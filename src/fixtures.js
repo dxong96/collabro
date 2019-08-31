@@ -37,20 +37,6 @@ let state = {
 			"description": "abc..",
 			"location": "",
 			"job_type": 1
-		},
-		{
-			"id": 3,
-			"title": "Do this",
-			"description": "abc..",
-			"location": "",
-			"job_type": 1
-		},
-		{
-			"id": 4,
-			"title": "Do this",
-			"description": "abc..",
-			"location": "",
-			"job_type": 1
 		}
 	],
 	"job_placements": [
