@@ -1,23 +1,24 @@
 import React from 'react';
 import Login from './login'
-import {getState} from './fixtures'
+import {getState, setStateByPath} from './fixtures'
 import { Redirect } from 'react-router-dom'
 
 function CompanyLogin(props) {
 	const [signedIn, setSignedIn] = React.useState(false)
 
-	const companys = getState()["companies"]
+	const companies = getState()["companies"]
 	const handleSignIn = (email, password) => {
-		const index = companys.findIndex(s => {
+		const index = companies.findIndex(s => {
 			return s.email.toLowerCase() === email.toLowerCase() && 
 			s.password === password
 		})
 		console.log('signed in', index !== -1)
 		setSignedIn(index !== -1)
+		setStateByPath(["current_company"], companies[index])
 	}
 	if (signedIn) {
 		return <Redirect
-	      to="/"
+	      to="/company"
 	    />
 
 	} else {

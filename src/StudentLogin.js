@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from './login'
-import {getState} from './fixtures'
+import {getState,setStateByPath} from './fixtures'
 import { Redirect } from 'react-router-dom'
 
 function StudentLogin(props) {
@@ -15,10 +15,11 @@ function StudentLogin(props) {
 		})
 		console.log('signed in', index !== -1)
 		setSignedIn(index !== -1)
+		setStateByPath(["current_student"], students[index])
 	}
 	if (signedIn) {
 		return <Redirect
-	      to="/"
+	      to="/student"
 	    />
 
 	} else {
