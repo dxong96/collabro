@@ -59,6 +59,25 @@ export function getState() {
 	return state
 }
 
+export function findById(collectionName, id) {
+	return state[collectionName].find(i => i.id === id)
+}
+
+export function setById(collectionName, id, item) {
+	const index = state[collectionName].findIndex(i => i.id === id)
+	if (index === -1) return
+	state[collectionName][index] = item
+}
+
+export function removeById(collectionName, id, item) {
+	const index = state[collectionName].findIndex(i => i.id === id)
+	if (index === -1) return
+	state[collectionName].splice(index, 1)
+}
+
 export default {
 	getState,
+	findById,
+	setById,
+	removeById,
 }
