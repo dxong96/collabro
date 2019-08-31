@@ -1,7 +1,33 @@
 import React from 'react'
-import {getState} from './fixtures'
+import {setStateByPath,getState,setById,getMaxId} from './fixtures'
 
 function JobNew(props){
+
+	const jobs = props.jobs || {}
+  	const [text, setText] = React.useState(jobs.text || '')
+  	//const todayInt = fromDateToInt(new Date())
+  	const handleSave = () => {
+    if (props.jobs) {
+      const newJobs = Object.assign({}, props.jobs, {
+        title,
+        description,
+      })
+      setById('jobs', props.jobs.id, newJobs)
+      console.log('Jobs updated')
+    } else {
+      const newJobs = Object.assign({}, props.job, {
+		job_type,
+        title,
+        description,
+        location,
+        id: getMaxId('jobs') + 1
+      })
+      const jobs = getState().jobs.concat(newJobs)
+      setStateByPath(["jobs"], jobs)
+      console.log('JobsForm added new')
+    }
+  }
+
 	return <div class="row justify-content-center">
 				<div class="col-lg-12">
 	 			<div class="card shadow shadow-lg--hover mt-5">
@@ -42,7 +68,7 @@ function JobNew(props){
 			</div>
 			</div>
 }
-
+/*
 function addJob(){  
 	const jobs = getState()['jobs']
 	var jobType;
@@ -66,7 +92,6 @@ function addJob(){
 	};
 	
 	jobs.push(SAMPLE_JSON);
-	alert("dfdf")
-}  
+	alert("dfdf")*/
 
 export default JobNew
